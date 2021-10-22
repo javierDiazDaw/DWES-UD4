@@ -10,11 +10,13 @@
     <?php
 
     $catalogo = simplexml_load_file("catalogo.xml");
-
+    $libro2= $file->book[1];
     printf("<p>Libro 2: %s, </p>", $catalogo->book[1]->author);
 
 
     echo "<table border = '1'>";
+
+        
 
     foreach($catalogo as $libro){
 
