@@ -7,6 +7,16 @@
     <title>Document</title>
 </head>
 <body>
+
+    <table border = "1">
+            <tr>
+                <th>ID</th>
+                <th>Origen</th>
+                <th>Destino</th>
+                <th>Fecha</th>
+                <th>Compañia</th>
+                <th>Modelo avion</th>
+            </tr>
     <?php
 
         $mysqli = mysqli_connect('localhost','developer','developer','agenciaviajes');
@@ -24,34 +34,98 @@
             if($result==false){
                 echo "consulta no funcionada correctamente";
             }
-            else{
+            else{            
+
                 while($fila=mysqli_fetch_assoc($result)){
                     
-                        print_r($fila);
-                        echo"<br>";
+                    echo "<tr>";
+                        echo "<td>";
                         echo $fila["id"];
-                        echo"</br>";
+                        echo "</td>";
+                        echo "<td>";
                         echo $fila["Origen"];
-                        echo"</br>";
+                        echo "</td>";
+                        echo "<td>";
                         echo $fila["Destino"];
-                        echo"</br>";
+                        echo "</td>";
+                        echo "<td>";
                         echo $fila["Fecha"];
-                        echo"</br>";
+                        echo "</td>";
+                        echo "<td>";
                         echo $fila["Companya"];
-                        echo"</br>";
+                        echo "</td>";
+                        echo "<td>";
                         echo $fila["Modeloavion"];
-                        echo"</br>";
-               
-                    
+                        echo "</td>";
+                    echo"</tr>";
+                   
                 }
             }
-            
-            
-                print_r($fila);
- 
+                print_r($fila); 
             mysqli_close($mysqli);
 
+            ?>
+
+        </table>
+
+        <table border = "1">
+            <tr>
+                <th>ID</th>
+                <th>Origen</th>
+                <th>Destino</th>
+                <th>Fecha</th>
+                <th>Compañia</th>
+                <th>Modelo avion</th>
+            </tr>
+
+            <?php
+
+            $mysqli = mysqli_connect('localhost','developer','developer','agenciaviajes');
+            $error = mysqli_connect_errno();
+            if ($error!= null){
+                echo "<p>Error $error conectando a la base de datos:",mysqli_error($mysqli),"</p>";
+                exit();
+            }else{
+                echo "conectando correctamente";
+                echo"<br>";
+            }
+                
+                $result2 = mysqli_query($mysqli, "SELECT * FROM `vuelos`");
+               
+                if($result2==false){
+                    echo "consulta no funcionada correctamente";
+                }else{            
+
+                        while($fila=mysqli_fetch_object($result2)){
+                       echo "<tr>";
+                        echo "<td>";
+                        printf ("%s", $file->id);
+                        echo "</td>";
+                        echo "<td>";
+                        printf ("%s", $file->Origen);
+                        echo "</td>";
+                        echo "<td>";
+                        printf ("%s", $file->Destino);
+                        echo "</td>";
+                        echo "<td>";
+                        printf ("%s", $file->Fecha);
+                        echo "</td>";
+                        echo "<td>";
+                        printf ("%s", $file->Companya);
+                        echo "</td>";
+                        echo "<td>";
+                        printf ("%s", $file->Modeloavion);
+                        echo "</td>";  
+                        }                      
+                }
+              
+           
+            print_r($fila); 
+            mysqli_close($mysqli);
     ?>
+
+            </table>
+
 </body>
 </html>
 
