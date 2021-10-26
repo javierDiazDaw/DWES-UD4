@@ -2,10 +2,11 @@
 
 function creaConexion(){
 
-    $mysqli = mysqli_connect('localhost', "developer", "developer", "agenciaviajes");
-    $error = mysqli_connect_errno();
+    $mysqli = new mysqli('localhost', "developer", "developer", "agenciaviajes");
+    $error = $mysqli -> connect_errno;
     if ($error!= null){
-        echo "<p>Error $error conectando a la base de datos:",mysqli_error($mysqli),"</p>";
+        echo "<p>Error $error conectando a la base de datos:",$mysqli -> connect_error
+        ,"</p>";
         exit();
     }else{
         echo "conectando correctamente";
@@ -42,7 +43,7 @@ function modificaDestino($id, $destino){
         mysqli_stmt_close($stmt);
 
     }
-    mysqli_close($mysqli);
+    $mysqli -> close($mysqli);
 }
 
 function modificaCompanya($id, $companya){
@@ -57,7 +58,7 @@ function modificaCompanya($id, $companya){
         mysqli_stmt_close($stmt);
 
     }
-    mysqli_close($mysqli);
+    $mysqli -> close($mysqli);
 
 }
 
@@ -73,7 +74,7 @@ function eliminaVuelo(){
         mysqli_stmt_close($stmt);
 
     }
-    mysqli_close($mysqli);
+    $mysqli -> close($mysqli);
 
 }
 
