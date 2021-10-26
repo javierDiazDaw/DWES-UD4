@@ -5,8 +5,7 @@ function creaConexion(){
     $mysqli = new mysqli('localhost', "developer", "developer", "agenciaviajes");
     $error = $mysqli -> connect_errno;
     if ($error!= null){
-        echo "<p>Error $error conectando a la base de datos:",$mysqli -> connect_error
-        ,"</p>";
+        echo "<p>Error $error conectando a la base de datos:",$mysqli -> connect_error,"</p>";
         exit();
     }else{
         echo "conectando correctamente";
@@ -20,13 +19,12 @@ function creaVuelo($origen, $destino, $fecha, $companya, $modeloavion){
     $mysqli = creaConexion();
 
     $sql = "INSERT INTO `vuelos` (Origen, Destino, Fecha, Companya, Modeloavion) VALUES (?, ?, ?, ?, ? )";
-    $consulta = mysqli_stmt_init($mysqli);
+    $mysqli->stmt_init();
 
-    if ($stmt= mysqli_prepare($mysqli, $sql)){
-        mysqli_stmt_bind_param($stmt, "sssss", $origen, $destino, $fecha, $companya, $modeloavion);
-        mysqli_stmt_execute($stmt);
-        mysqli_stmt_close($stmt);
-
+    if ($stmt = $mysqli->prepare($sql)){
+        $stmt->bind_param("sssss", $origen, $destino, $fecha, $companya, $modeloavion);
+        $stmt->execute();
+        $stmt->close();
     }
 
 }
@@ -36,29 +34,32 @@ function modificaDestino($id, $destino){
     $mysqli = creaConexion();
     $retorno = false;
     $sql = "UPDATE `vuelos` SET `Destino` =?    WHERE `id`= ?";
-    $consulta = mysqli_stmt_init($mysqli);
-    if($stmt = mysqli_prepare($mysqli,$sql)){
-        mysqli_stmt_bind_param($stmt, "is", $destino, $id);
-        $retorno = mysqli_stmt_execute($stmt);
-        mysqli_stmt_close($stmt);
+    $mysqli->stmt_init();
+
+    if($stmt = $mysqli->prepare($sql)){
+        $stmt->bind_param("is", $destino, $id);
+        $stmt->execute();
+        $stmt->close();
 
     }
-    $mysqli -> close($mysqli);
+    //$mysqli -> close($mysqli);
+    $mysqli -> close();
 }
 
 function modificaCompanya($id, $companya){
 
     $mysqli = creaConexion();
     $retorno = false;
-    $sql = "UPDATE `vuelos` SET `Companya` =?    WHERE `id`= ?";
-    $consulta = mysqli_stmt_init($mysqli);
-    if($stmt = mysqli_prepare($mysqli,$sql)){
-        mysqli_stmt_bind_param($stmt, "si", $companya, $id);
-        $retorno = mysqli_stmt_execute($stmt);
-        mysqli_stmt_close($stmt);
+    $sql = "UPDATE `vuelos` SET `Companya` =? WHERE `id`= ?";
+    $mysqli->stmt_init();
+    if($stmt = $mysqli->prepare($sql)){
+        $stmt->bind_param("si", $companya, $id);
+        $stmt->execute();
+        $stmt->close();
 
     }
-    $mysqli -> close($mysqli);
+    //$mysqli -> close($mysqli);
+    $mysqli -> close();
 
 }
 
@@ -67,14 +68,15 @@ function eliminaVuelo(){
     $mysqli = creaConexion();
     $retorno = false;
     $sql = "DELETE FROM `vuelos` WHERE `id`= ?";
-    $consulta = mysqli_stmt_init($mysqli);
-    if($stmt = mysqli_prepare($mysqli,$sql)){
-        mysqli_stmt_bind_param($stmt, "i", $id);
-        $retorno = mysqli_stmt_execute($stmt);
-        mysqli_stmt_close($stmt);
+    $mysqli->stmt_init();
+    if($stmt = $mysqli->prepare($sql)){
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->close();
 
     }
-    $mysqli -> close($mysqli);
+    //$mysqli -> close($mysqli);
+    $mysqli -> close();
 
 }
 
