@@ -298,29 +298,25 @@ $servidor = "localhost";
             echo "</tr>";
 
             $turistas=$conn->query($sql);
-                     
+            $turistas->execute();
+            $turistas->bindColumn(2, $id);
+            $turistas->bindColumn(2, $nombre);
+            $turistas->bindColumn(3, $apellido1);
+            $turistas->bindColumn(4, $apellido2);
+            $turistas->bindColumn(5, $direccion);
+            $turistas->bindColumn(6, $telefono);
+
+
                 
                 while($fila = $turistas -> fetch(PDO::FETCH_BOUND)){
                     
                     echo "<tr>";
-                        echo "<td>";
-                        echo $fila-> bincolumn ["id"];
-                        echo "</td>";
-                        echo "<td>"; 
-                        echo $fila["nombre"];
-                        echo "</td>";
-                        echo "<td>";
-                        echo $fila["apellido1"];
-                        echo "</td>";
-                        echo "<td>";
-                        echo $fila["apellido2"];
-                        echo "</td>";
-                        echo "<td>";
-                        echo $fila["direccion"];
-                        echo "</td>";
-                        echo "<td>";
-                        echo $fila["telefono"];
-                        echo "</td>";
+                    echo "<td>".$nombre."</td>";
+                        echo "<td>".$nombre."</td>";
+                        echo "<td>".$apellido1."</td>";
+                        echo "<td>".$apellido2."</td>";
+                        echo "<td>".$direccion."</td>";
+                        echo "<td>".$telefono."</td>";
                     echo"</tr>";                   
                 }
             
