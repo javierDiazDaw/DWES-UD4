@@ -61,7 +61,7 @@ function modificaCompanya($id, $companya){
 
 }
 
-function eliminaVuelo(){
+function eliminaVuelo($id){
 
     $mysqli = creaConexion();
     $retorno = false;

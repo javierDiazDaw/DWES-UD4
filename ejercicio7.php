@@ -15,7 +15,7 @@ function creaConexion(){
 }
 
 function creaVuelo($origen, $destino, $fecha, $companya, $modeloavion){
-
+    $retorno = false;
     $mysqli = creaConexion();
 
     $sql = "INSERT INTO `vuelos` (Origen, Destino, Fecha, Companya, Modeloavion) VALUES (?, ?, ?, ?, ? )";
@@ -26,7 +26,7 @@ function creaVuelo($origen, $destino, $fecha, $companya, $modeloavion){
         $stmt->execute();
         $stmt->close();
     }
-
+    $mysqli -> close();
 }
 
 function modificaDestino($id, $destino){
@@ -44,6 +44,7 @@ function modificaDestino($id, $destino){
     }
     //$mysqli -> close($mysqli);
     $mysqli -> close();
+    return $retorno;
 }
 
 function modificaCompanya($id, $companya){
@@ -60,10 +61,11 @@ function modificaCompanya($id, $companya){
     }
     //$mysqli -> close($mysqli);
     $mysqli -> close();
+    return $retorno;
 
 }
 
-function eliminaVuelo(){
+function eliminaVuelo($id){
 
     $mysqli = creaConexion();
     $retorno = false;
@@ -77,6 +79,7 @@ function eliminaVuelo(){
     }
     //$mysqli -> close($mysqli);
     $mysqli -> close();
+    return $retorno;
 
 }
 
@@ -93,7 +96,7 @@ modificaCompanya("1","Armario");
 eliminaVuelo("1");
 
 $vuelos = extraeVuelos();
-while($fila = mysqli_fetch_assoc($vuelos)){
+while($fila = $vuelos -> fetch_assoc()){
 
     print_r($fila);
     echo"<br>";
