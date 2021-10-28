@@ -295,11 +295,11 @@ $servidor = "localhost";
             echo" <th>Apellido 2</th>";
             echo" <th>Direccion</th>";
             echo" <th>Telefono</th>";
-            echo "</tr>";
+            echo" </tr>";
 
             $turistas=$conn->query($sql);
             $turistas->execute();
-            $turistas->bindColumn(2, $id);
+            $turistas->bindColumn(1, $id);
             $turistas->bindColumn(2, $nombre);
             $turistas->bindColumn(3, $apellido1);
             $turistas->bindColumn(4, $apellido2);
@@ -326,6 +326,8 @@ $servidor = "localhost";
         echo "Conexion fallida: " . $e ->getMessage();
     }
     $conn = null; //para cerrar conexion
+
+    
 
     ?>
 </body>

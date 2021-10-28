@@ -27,7 +27,61 @@ $servidor = "localhost";
     } catch(PDOException $e){
         echo "Conexion fallida: " . $e ->getMessage();
     }
+
     $conn = null; //para cerrar conexion
+
+    try {
+        $conn = new PDO("mysql:host = $servidor; dbname=$baseDatos", $usuario, $pass);
+        echo "Conectado correctamente";
+        echo"<br>";
+
+        $sql = "INSERT INTO turista (nombre, apellido1, apellido2, direccion, telefono) VALUES ('Javier', 'Jimenez', 'Castillo', 'Dos hermanas', '637891323')";
+        $numeroClientes=$conn->exec($sql);
+        $last_id = $conn->lastInsertId();
+        echo "Se han añadido $numeroClientes cliente nuevo con el id: $last_id.";
+        echo"<br>";
+
+    } catch(PDOException $e){
+        echo "Conexion fallida: " . $e ->getMessage();
+    }
+
+    $conn = null; //para cerrar conexion
+
+    try {
+        $conn = new PDO("mysql:host = $servidor; dbname=$baseDatos", $usuario, $pass);
+        echo "Conectado correctamente";
+        echo"<br>";
+
+        $sql = "DELETE FROM  turista WHERE id = 1";
+        echo"<br>";
+        $numeroClientesBorrados=$conn->exec($sql);
+        echo "Se han eliminado $numeroClientesBorrados cliente.";
+
+
+    } catch(PDOException $e){
+        echo "Conexion fallida: " . $e ->getMessage();       
+    }
+
+    $conn = null; //para cerrar conexion
+
+    try {
+        $conn = new PDO("mysql:host = $servidor; dbname=$baseDatos", $usuario, $pass);
+        echo "Conectado correctamente";
+        echo"<br>";
+
+        $sql = "UPDATE turista SET nombre = 'Carmen', apellido1= 'Rufo', apellido2= 'Palomo', direccion= 'Sevilla', telefono='111111111' WHERE id= 2  OR id= 3";
+        echo"<br>";
+        $numeroClientesActualizados=$conn->exec($sql);
+        echo "Se han modificado $numeroClientesActualizados cliente.";
+
+
+    } catch(PDOException $e){
+        echo "Conexion fallida: " . $e ->getMessage();
+    }
+
+    $conn = null; //para cerrar conexion
+
+
     ?>
 </body>
 </html>
