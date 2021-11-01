@@ -27,7 +27,7 @@ $servidor = "localhost";
     } catch(PDOException $e){
         echo "Conexion fallida: " . $e ->getMessage();
     }
-
+   
     $conn = null; //para cerrar conexion
 
     try {

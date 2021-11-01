@@ -60,7 +60,7 @@ $servidor = "localhost";
                         echo $fila["lanzamiento"];
                         echo "</td>";
                         echo "<td>";
-                        echo $fila["imagencd"];
+                        echo "<img src= '".$fila["imagencd"]."'width='200'>";
                         echo "</td>";
                     echo"</tr>";                   
                 }
