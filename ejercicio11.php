@@ -63,6 +63,7 @@
 
     function eliminaTurista($conexion, $id){
         try{
+       
             $consulta =$conexion->prepare("DELETE FROM turista WHERE id=:id"); 
             $parametros = array(":id"=>$id);
             return $consulta->execute($parametros);

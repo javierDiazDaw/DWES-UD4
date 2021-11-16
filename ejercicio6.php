@@ -43,6 +43,7 @@ function modificaDestino($id, $destino){
 
     }
     mysqli_close($mysqli);
+    return $retorno;
 }
 
 function modificaCompanya($id, $companya){
@@ -58,6 +59,7 @@ function modificaCompanya($id, $companya){
 
     }
     mysqli_close($mysqli);
+    return $retorno;
 
 }
 
@@ -74,6 +76,7 @@ function eliminaVuelo($id){
 
     }
     mysqli_close($mysqli);
+    return $retorno;
 
 }
 

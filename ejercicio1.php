@@ -13,7 +13,8 @@
     $file =fopen("starWars.txt","r+");
     do{
        $datos=fgets($file);
-       list($nombre,$estatura,$peso,$colorPelo, $colorPiel, $colorOjos, $edad, $genero, $procedencia, $especie)=explode(",", $datos);
+       list($nombre,$estatura,$peso,$colorPelo, $colorPiel, $colorOjos, $edad, 
+       $genero, $procedencia, $especie)=explode(",", $datos);
        
         echo"<tr>";
             echo"<td>$nombre</td>";
